@@ -28,10 +28,10 @@ export const storeReducer = (state, action) => {console.log(state.carrinho)
       return { ...state, carrinho: novoCarrinho }
 
       case "REMOVE_ITEM_FROM_CART": {
-        const newCart = state.cart.filter(product => {
+        const newCart = state.carrinho.filter(product => {
           return product.id !== action.productId
         })
-        return { ...state, cart: newCart }
+        return { ...state, carrinho: newCart }
       }
       default: 
       return state

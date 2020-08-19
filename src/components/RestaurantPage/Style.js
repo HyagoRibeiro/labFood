@@ -100,3 +100,6 @@ export const ContainerFooter = styled.div `
     background-color: #fff;
 `;
 
+export const NotFound = styled.p `
+    text-align: center;
+`;

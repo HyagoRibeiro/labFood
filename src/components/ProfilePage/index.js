@@ -63,6 +63,7 @@ const OrderInfo = styled.div `
     border: solid 1px #b8b8b8;
     border-radius: 8px;
     padding: 1rem;
+    margin-top: 0.5rem;
 `;
 
 const TitleOrder = styled.p `
@@ -98,6 +99,7 @@ const ContainerFooter = styled.div `
     position: fixed;
     width: 100%;
     bottom: 0;
+    background-color: #fff;
 `;
 
 const HeaderContainer = styled.div `
@@ -107,6 +109,11 @@ const HeaderContainer = styled.div `
     font-size: 1rem;
     height: 4rem;
     border-bottom: solid 1px rgba(0, 0, 0, 0.25);
+`;
+
+const FakeContainer = styled.div `
+    width: 100vw;
+    height: 60px;
 `;
 
 function ProfilePage() {
@@ -126,10 +133,12 @@ function ProfilePage() {
         history.push("/profile-page/edit/address")
     }
  
-    const date = new Date(historyOrder.createdAt);
-    const [weekDay, month, day, year] = date.toString().split(" ");
+    let arrayDate = [];
+    historyOrder.forEach(historySingle => {
+        const date = new Date(historySingle.createdAt);
+        const [weekDay, month, day, year] = date.toString().split(" ");
 
-    const monthTranslate = () => {
+        const monthTranslate = () => {
         switch(month) {
             case 'Jan':
                 return 'Janeiro';
@@ -159,6 +168,8 @@ function ProfilePage() {
                 return month;
         }
     }
+    arrayDate.push(`${day} ${monthTranslate()} ${year}`)
+    });
 
     useEffect(() => {
         const token = window.localStorage.getItem("token")
@@ -221,20 +232,21 @@ function ProfilePage() {
             <DateOrder>
                 <TitleHistoryOrder>Histórico de pedidos</TitleHistoryOrder>
                 <Line/>
-                {historyOrder === ([])? historyOrder.map((history) => {
-                    return(
-                        <OrderInfo key = {history.createdAt}>
-                            <TitleOrder>{history.restaurantName}</TitleOrder>
-                            <DateBuy>{`${day} ${monthTranslate()} ${year}`}</DateBuy>
-                            <PriceOrder>SUBTOTAL R${history.totalPrice.toFixed(2)}</PriceOrder>
-                        </OrderInfo>
-                    )
-                }):<p>Você não realizou nenhum pedido</p>}
+                    {historyOrder.length !== 0 ? historyOrder.map((history, index) => {
+                        return(
+                            <OrderInfo key = {history.createdAt}>
+                                <TitleOrder>{history.restaurantName}</TitleOrder>
+                                <DateBuy>{arrayDate[index] && arrayDate[index]}</DateBuy>
+                                <PriceOrder>SUBTOTAL R${history.totalPrice.toFixed(2)}</PriceOrder>
+                            </OrderInfo>
+                        )
+                    }) : <p>Você não realizou nenhum pedido</p>}
             </DateOrder>
         </ContainerProfile>
         <ContainerFooter>
          <Footer />
         </ContainerFooter>
+        <FakeContainer />
     </>
   );
 }
