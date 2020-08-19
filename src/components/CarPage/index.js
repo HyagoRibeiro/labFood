@@ -1,86 +1,155 @@
-import React, {useState, useContext} from 'react'
+import React, {useState, useContext, useEffect} from 'react'
 import Radio from '@material-ui/core/Radio';
+import { useHistory } from "react-router-dom";
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
 import CartContext from '../../context/CartContext'
+import axios from 'axios';
+
+import { ProductContainer, ImageProduct, DescriptionContainer, ProductTitle, Ingredients, 
+  Bottom, Price, Top, ContainerContador, Contador, ContainerCart, ButtonRemove, Header,
+HeaderTitle, AddressContainer, AddressTitle, AddressText, RestaurantTitle, RestaurantAddress,
+RestaurantTimeDelivery, ContainerRestaurant, ContainerValues, DeliveryValue,
+TitleTotal, TextTotal, PriceTotal, TitleForm, SendRequestForm, ButtonSend, TextEmpty, ContainerFooter, FakeContainer } from './style';
+import Footer from './../Footer';
+
 
 const CarPage = () => {
 
   const cartContext = useContext(CartContext);
-
+  const history = useHistory();
   console.log(cartContext)
 
-  const [pedidos, setPedidos] = useState({
-    "id": "3vcYYSOEf8dKeTPd7vHe",
-                "name": "Pastel",
-                "description": "Pastel autêntico, feito na hora!",
-                "category": "Pastel",
-                "price": 3,
-                "photoUrl": "https://static-images.ifood.com.br/image/upload/f_auto,t_high/pratos/65c38aa8-b094-413d-9a80-ddc256bfcc78/201907031408_66194519.jpg"
-  })
   const [ endereco, setEndereco ] = useState('Rua retiro dos artistas')
-  const [ frete, setFrete ] = useState('')
-  const [ aPagar, setAPagar ] = useState('')
-  const [ formaDePagamento, setFormaPagamento ] = useState('')
-  const [value, setValue] = React.useState('');
-  const [nameRest, setNameRest] = useState('Bullguer Vila Madalena')
-  const [time, setTime] = useState('30 - 40 min')
+  const [ paymentMethod, setPaymentMethod ] = useState('')
+  const [value, setValue] = useState('');
+  const [restaurant, setRestaurant] = useState({})
 
-  const handleChange = (event) => {
-    setValue(event.target.value);
+  
+  let totalValue = 0;
+  let arrayPlaceOrder = [];
+  cartContext.carrinho.forEach(product => {
+    totalValue = totalValue + product.price * product.quantity;
+    arrayPlaceOrder.push({quantity: Number(product.quantity), id: product.id})
+  });
+
+
+  const removeProduct = (produtoId) => {
+    cartContext.dispatch({ type: "REMOVE_ITEM_FROM_CART", produtoId: produtoId });
+    console.log(produtoId)
+  }
+  
+  console.log(arrayPlaceOrder)
+
+  const token = window.localStorage.getItem('token');
+
+  const getRestaurantDetail = async () => {
+    try {
+      const response = await axios.get(`https://us-central1-missao-newton.cloudfunctions.net/fourFoodA/restaurants/${cartContext.carrinho[0].restauranteId}`, {
+        headers: {
+          auth: token
+        }
+      })
+      setRestaurant(response.data.restaurant)
+    } catch(error) {
+      console.log(error.response)
+    }
+}; 
+
+    useEffect(() => {
+      getRestaurantDetail()
+    }, [])
+
+  const handleChangePaymentMethod = (event) => {
+    setPaymentMethod(event.target.value);
   };
 
+  const handlePlaceOrder = async (event) => {
+    event.preventDefault()
+    try {
+      const body = {
+        products: arrayPlaceOrder,
+        paymentMethod: paymentMethod
+      }
+      const response = await axios.post(`https://us-central1-missao-newton.cloudfunctions.net/fourFoodA/restaurants/${cartContext.carrinho[0].restauranteId}/order`, body, {
+        headers: {
+          auth: token
+        }
+      })
+      alert("Pedido realizado com sucesso")
+    } catch(error) {
+      console.log(error.response)
+    }
+  }
 
 
-  return <div className='carrinho'>
-    <header className='Bar'>
-      <h1 className='title'>Meu carrinho</h1>
-    </header>
-    <main>
-      <div className='Rectangle'>
-        <p className='Endereco-de-entrega'>Endereço de entrega</p>
-        <p className='endereco'>{endereco}</p>
-      </div>
-      <div className='info-rest'>
-      <p className='name-rest'>{nameRest}</p>
-      <p className='endereco-rest'>{endereco}</p>
-      <p className='time-rest'>{time}</p>
-      </div>
-      <div className='text-car'>
-        {pedidos.length === '' ? <h2 className='Text'>Carrinho vazio</h2> : <div className='card-pedidos'>
-          <button className='quantity'>2</button>
-          <ul key={pedidos.id}>
-            <li className='title'>{pedidos.name}</li>
-            <li className='description'>{pedidos.description}</li>
-            <li className='price'>R${pedidos.price.toFixed(2)}</li>
-          </ul>
-            {/* <img src={pedidos.photoUrl} /> */}
-            <button>remover</button>
-        </div>
-         }
-        </div>
-        <div>
-        <p className='Frete'>Frete R$0,00{frete}</p>
-        <div className ='total'>
-        <h3 className='SUBTOTAL'>SUBTOTAL</h3>
-        <p className='R0000'>R$0,00 {aPagar}</p>
-        </div>
-      </div>
-      <form className='pagamento'>
-          <h3 className='forma-pagamento'>Forma de pagamento</h3>
-          <hr className='linha' />
-          <FormControl component="fieldset" className='formulario'>
-            <RadioGroup aria-label="" name="" value={value} onChange={handleChange}>
-              <FormControlLabel value="dinheiro" control={<Radio />} label="Dinheiro" />
-              <FormControlLabel value="cartao-credito" control={<Radio />} label="Cartão de Crédito" />
-            </RadioGroup>
-          </FormControl>
-        <button className='confirm'>Confirmar</button>
-      </form>
-    </main>
-  </div>
+  return (
+        <>
+            <Header>
+              <HeaderTitle>Meu carrinho</HeaderTitle>
+            </Header>
+              <AddressContainer>
+                <AddressTitle>Endereço de entrega</AddressTitle>
+                <AddressText>{endereco}</AddressText>
+              </AddressContainer>
+          <ContainerCart>
+              {cartContext.carrinho.length === 0 ? <TextEmpty>Carrinho vazio</TextEmpty> : 
+              <>
+                <ContainerRestaurant>
+                  <RestaurantTitle>{restaurant.name}</RestaurantTitle>
+                  <RestaurantAddress>{restaurant.address}</RestaurantAddress>
+                  <RestaurantTimeDelivery>{restaurant.deliveryTime} min</RestaurantTimeDelivery>
+                </ContainerRestaurant>
+                <div>
+                  {cartContext.carrinho && cartContext.carrinho.map(product => {
+                    return (
+                        <ProductContainer key={product.id}>
+                          <div>
+                            {product.photoUrl && <ImageProduct BackgroundImage={product.photoUrl} />}
+                          </div>
+                          <DescriptionContainer>
+                              <Top>
+                                <ProductTitle>{product.name}</ProductTitle>
+                                <ContainerContador><Contador>{product.quantity}</Contador></ContainerContador>
+                              </Top>
+                              <Ingredients>{product.description}</Ingredients>
+                                  <Bottom>
+                                    <Price>R${product.price.toFixed(2)}</Price>
+                                    <ButtonRemove onClick={() => removeProduct(product.id)}>Remover</ButtonRemove>
+                                  </Bottom>
+                          </DescriptionContainer>
+                        </ProductContainer>
+                    );
+                  })
+                  }
+                </div>
+              </>}
+                <ContainerValues>
+                  <DeliveryValue>Frete R${restaurant.shipping ? restaurant.shipping.toFixed(2) : `0,00`}</DeliveryValue>
+                    <PriceTotal>
+                      <TitleTotal>SUBTOTAL</TitleTotal>
+                      <TextTotal>R${totalValue.toFixed(2)}</TextTotal>
+                    </PriceTotal>
+                </ContainerValues>
+          <SendRequestForm onSubmit={handlePlaceOrder}>
+              <TitleForm>Forma de pagamento</TitleForm>
+              <FormControl component="fieldset">
+                <RadioGroup value={paymentMethod} onChange={handleChangePaymentMethod}>
+                  <FormControlLabel value="money" control={<Radio />} label="Dinheiro" />
+                  <FormControlLabel value="creditcard" control={<Radio />} label="Cartão de Crédito" />
+                 </RadioGroup>
+              </FormControl>
+            <ButtonSend>Confirmar</ButtonSend>
+          </SendRequestForm>
+          </ContainerCart>
+          <ContainerFooter>
+            <Footer/>
+          </ContainerFooter>
+          <FakeContainer />
+        </>       
+  );
+  
 }
 
 export default CarPage

@@ -18,15 +18,15 @@ const FooterContainer = styled.div`
 `
 
 const HomeIconFooter = styled(HomeIcon)`
-   color: ${urlAtual === 'http://localhost:3000/restaurant' ? 'red' : '#BDBDBD'};
+   color: ${urlAtual === 'http://localhost:3000/restaurant' ? '#E8222E' : '#BDBDBD'};
 `
 
 const ShoppingCartIconFooter = styled(ShoppingCartIcon)`
-    color: ${urlAtual === 'http://localhost:3000/car' ? 'red' : '#BDBDBD'};
+    color: ${urlAtual === 'http://localhost:3000/car' ? '#E8222E' : '#BDBDBD'};
 `
 
 const PersonIconFooter = styled(PersonIcon)`
-    color: ${urlAtual === 'http://localhost:3000/profile-page' ? 'red' : '#BDBDBD'};
+    color: ${urlAtual === 'http://localhost:3000/profile-page' ? '#E8222E' : '#BDBDBD'};
 `
 
 function Footer(props){
@@ -44,6 +44,7 @@ function Footer(props){
     const goToProfilePage = () => {
         history.push("/profile-page")
     }
+
 
     return(
         <FooterContainer>

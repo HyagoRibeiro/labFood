@@ -47,7 +47,6 @@ function RestaurantDetailPage() {
 }
 
   const goToAddQuantity = (allProduct) => {
-    // history.push("/restaurant/details/quantity")
     setShowQuantity(!showQuantity)
     setProduct(allProduct)
   }
@@ -120,7 +119,6 @@ const goToCartPage = () => {
       {showQuantity && <AddQuantity showQuantity={showQuantity} setShowQuantity={setShowQuantity} selectedProduct={product} restaurant={restaurant}/>}
       
       <Header>
-      <button onClick={goToCartPage}>carrinho</button>
         <p onClick={goToRestaurantPage}><ArrowBackIosIcon /></p>
         <HeaderTitle>Restaurante</HeaderTitle> 
       </Header>
@@ -146,7 +144,14 @@ const goToCartPage = () => {
                           {product.photoUrl && <ImageProduct BackgroundImage={product.photoUrl} />}
                         </div>
                         <DescriptionContainer>
+                        <Top>
                             <ProductTitle>{product.name}</ProductTitle>
+                            {cartContext.carrinho.map( productCart => {
+                              if ( product.id === productCart.id ) {
+                                return <ContainerContador><Contador key={productCart.id}>{productCart.quantity}</Contador></ContainerContador>
+                              }
+                            })}
+                        </Top>
                             <Ingredients>{product.description}</Ingredients>
                                 <Bottom>
                                   <Price>R${product.price.toFixed(2)}</Price>
@@ -158,7 +163,7 @@ const goToCartPage = () => {
                   )}
             })}
           {salgadoCategory && salgadoCategory.length !== 0 ? <SectionTitle>Salgado</SectionTitle> : <></>}
-            {restaurant.products && restaurant.products.map((product) => {
+            {restaurant.products && restaurant.products.map((product, index) => {
                 if(product.category === "Salgado") {
                   return (
                     <>
@@ -169,7 +174,11 @@ const goToCartPage = () => {
                         <DescriptionContainer>
                           <Top>
                             <ProductTitle>{product.name}</ProductTitle>
-                          <ContainerContador><Contador>0</Contador></ContainerContador>
+                            {cartContext.carrinho.map( productCart => {
+                              if ( product.id === productCart.id ) {
+                                return <ContainerContador><Contador key={productCart.id}>{productCart.quantity}</Contador></ContainerContador>
+                              }
+                            })}
                           </Top>
                             <Ingredients>{product.description}</Ingredients>
                                 <Bottom>
@@ -192,7 +201,14 @@ const goToCartPage = () => {
                           {product.photoUrl && <ImageProduct BackgroundImage={product.photoUrl} />}
                         </div>
                         <DescriptionContainer>
+                        <Top>
                             <ProductTitle>{product.name}</ProductTitle>
+                            {cartContext.carrinho.map( productCart => {
+                              if ( product.id === productCart.id ) {
+                                return <ContainerContador><Contador key={productCart.id}>{productCart.quantity}</Contador></ContainerContador>
+                              }
+                            })}
+                        </Top>
                             <Ingredients>{product.description}</Ingredients>
                                 <Bottom>
                                   <Price>R${product.price.toFixed(2)}</Price>
@@ -214,7 +230,14 @@ const goToCartPage = () => {
                           {product.photoUrl && <ImageProduct BackgroundImage={product.photoUrl} />}
                         </div>
                         <DescriptionContainer>
+                        <Top>
                             <ProductTitle>{product.name}</ProductTitle>
+                            {cartContext.carrinho.map( productCart => {
+                              if ( product.id === productCart.id ) {
+                                return <ContainerContador><Contador key={productCart.id}>{productCart.quantity}</Contador></ContainerContador>
+                              }
+                            })}
+                        </Top>
                             <Ingredients>{product.description}</Ingredients>
                                 <Bottom>
                                   <Price>R${product.price.toFixed(2)}</Price>
@@ -236,7 +259,14 @@ const goToCartPage = () => {
                           {product.photoUrl && <ImageProduct BackgroundImage={product.photoUrl} />}
                         </div>
                         <DescriptionContainer>
+                        <Top>
                             <ProductTitle>{product.name}</ProductTitle>
+                            {cartContext.carrinho.map( productCart => {
+                              if ( product.id === productCart.id ) {
+                                return <ContainerContador><Contador key={productCart.id}>{productCart.quantity}</Contador></ContainerContador>
+                              }
+                            })}
+                        </Top>
                             <Ingredients>{product.description}</Ingredients>
                                 <Bottom>
                                   <Price>R${product.price.toFixed(2)}</Price>
@@ -258,7 +288,14 @@ const goToCartPage = () => {
                           {product.photoUrl && <ImageProduct BackgroundImage={product.photoUrl} />}
                         </div>
                         <DescriptionContainer>
+                        <Top>
                             <ProductTitle>{product.name}</ProductTitle>
+                            {cartContext.carrinho.map( productCart => {
+                              if ( product.id === productCart.id ) {
+                                return <ContainerContador><Contador key={productCart.id}>{productCart.quantity}</Contador></ContainerContador>
+                              }
+                            })}
+                        </Top>
                             <Ingredients>{product.description}</Ingredients>
                                 <Bottom>
                                   <Price>R${product.price.toFixed(2)}</Price>
@@ -280,7 +317,14 @@ const goToCartPage = () => {
                           {product.photoUrl && <ImageProduct BackgroundImage={product.photoUrl} />}
                         </div>
                         <DescriptionContainer>
+                        <Top>
                             <ProductTitle>{product.name}</ProductTitle>
+                            {cartContext.carrinho.map( productCart => {
+                              if ( product.id === productCart.id ) {
+                                return <ContainerContador><Contador key={productCart.id}>{productCart.quantity}</Contador></ContainerContador>
+                              }
+                            })}
+                        </Top>
                             <Ingredients>{product.description}</Ingredients>
                                 <Bottom>
                                   <Price>R${product.price.toFixed(2)}</Price>
@@ -302,7 +346,14 @@ const goToCartPage = () => {
                           {product.photoUrl && <ImageProduct BackgroundImage={product.photoUrl} />}
                         </div>
                         <DescriptionContainer>
+                        <Top>
                             <ProductTitle>{product.name}</ProductTitle>
+                            {cartContext.carrinho.map( productCart => {
+                              if ( product.id === productCart.id ) {
+                                return <ContainerContador><Contador key={productCart.id}>{productCart.quantity}</Contador></ContainerContador>
+                              }
+                            })}
+                        </Top>
                             <Ingredients>{product.description}</Ingredients>
                                 <Bottom>
                                   <Price>R${product.price.toFixed(2)}</Price>
@@ -324,7 +375,14 @@ const goToCartPage = () => {
                           {product.photoUrl && <ImageProduct BackgroundImage={product.photoUrl} />}
                         </div>
                         <DescriptionContainer>
+                        <Top>
                             <ProductTitle>{product.name}</ProductTitle>
+                            {cartContext.carrinho.map( productCart => {
+                              if ( product.id === productCart.id ) {
+                                return <ContainerContador><Contador key={productCart.id}>{productCart.quantity}</Contador></ContainerContador>
+                              }
+                            })}
+                        </Top>
                             <Ingredients>{product.description}</Ingredients>
                                 <Bottom>
                                   <Price>R${product.price.toFixed(2)}</Price>
@@ -346,7 +404,14 @@ const goToCartPage = () => {
                           {product.photoUrl && <ImageProduct BackgroundImage={product.photoUrl} />}
                         </div>
                         <DescriptionContainer>
+                        <Top>
                             <ProductTitle>{product.name}</ProductTitle>
+                            {cartContext.carrinho.map( productCart => {
+                              if ( product.id === productCart.id ) {
+                                return <ContainerContador><Contador key={productCart.id}>{productCart.quantity}</Contador></ContainerContador>
+                              }
+                            })}
+                        </Top>
                             <Ingredients>{product.description}</Ingredients>
                                 <Bottom>
                                   <Price>R${product.price.toFixed(2)}</Price>
