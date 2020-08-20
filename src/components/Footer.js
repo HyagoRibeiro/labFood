@@ -18,15 +18,15 @@ const FooterContainer = styled.div`
 `
 
 const HomeIconFooter = styled(HomeIcon)`
-   color: ${urlAtual === 'http://localhost:3000/restaurant' ? '#E8222E' : '#BDBDBD'};
+   color: #E8222E;
 `
 
 const ShoppingCartIconFooter = styled(ShoppingCartIcon)`
-    color: ${urlAtual === 'http://localhost:3000/car' ? '#E8222E' : '#BDBDBD'};
+    color: #E8222E;
 `
 
 const PersonIconFooter = styled(PersonIcon)`
-    color: ${urlAtual === 'http://localhost:3000/profile-page' ? '#E8222E' : '#BDBDBD'};
+    color: #E8222E;
 `
 
 function Footer(props){
@@ -37,8 +37,8 @@ function Footer(props){
         history.push("/restaurant")
     }
 
-    const goToCarPage = () => {
-        history.push("/car")
+    const goToCartPage = () => {
+        history.push("/cart")
     }
 
     const goToProfilePage = () => {
@@ -48,9 +48,21 @@ function Footer(props){
 
     return(
         <FooterContainer>
-            <HomeIconFooter fontSize="large" cursor="pointer" color={props.color} onClick={goToRestaurantPage}/>
-            <ShoppingCartIconFooter fontSize="large" cursor="pointer" color={props.color} onClick={goToCarPage}/>
-            <PersonIconFooter fontSize="large" cursor="pointer" color={props.color} onClick={goToProfilePage}/>
+            {
+                history.location.pathname === "/restaurant" ?
+                <HomeIconFooter fontSize="large" cursor="pointer" color={props.color} onClick={() => goToRestaurantPage()}/> :
+                <HomeIconFooter fontSize="large" cursor="pointer" color={'disabled'} onClick={() => goToRestaurantPage()}/>
+            }
+            {
+                history.location.pathname === "/cart" ? 
+                <ShoppingCartIconFooter fontSize="large" cursor="pointer" color={props.color} onClick={() => goToCartPage()}/> :
+                <ShoppingCartIconFooter fontSize="large" cursor="pointer" color={'disabled'} onClick={() => goToCartPage()}/>
+            }
+            {
+                history.location.pathname === "/profile-page" ?
+                <PersonIconFooter fontSize="large" cursor="pointer" color={props.color} onClick={goToProfilePage}/> :
+                <PersonIconFooter fontSize="large" cursor="pointer" color={'disabled'} onClick={goToProfilePage}/>
+            }
         </FooterContainer>
     )
 }

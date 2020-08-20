@@ -23,8 +23,8 @@ function Home() {
     setTimeout(() => history.push("/login"), 2000)
   }, [history])
   return (
-    <ContainerHome className="App">
-      <LogoImg src={logo}/>
+    <ContainerHome>
+      <LogoImg alt="imagem" src={logo}/>
     </ContainerHome>
   );
 }

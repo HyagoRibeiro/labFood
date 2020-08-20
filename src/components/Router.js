@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import AddressPage from "./AddressPage/index";
-import CarPage from "./CarPage/index";
+import CartPage from "./CartPage/index";
 import Home from "./Home/index";
 import LoginPage from "./LoginPage/index";
 import ProfilePage from "./ProfilePage/index";
@@ -10,7 +10,6 @@ import ProfileAddressPage from "./ProfileAddressPage/index";
 import RestaurantDetailPage from "./RestaurantDetailPage/index";
 import RestaurantPage from "./RestaurantPage/index";
 import AddQuantity from "./AddQuantity/index"
-import SearchPage from "./SearchPage/index";
 import SignupPage from "./SignupPage/index";
 
 
@@ -33,9 +32,6 @@ function Router() {
                 <Route exact path = "/restaurant">
                     <RestaurantPage/>
                 </Route>
-                <Route exact path = "/search-restaurant">
-                    <SearchPage/>
-                </Route>
                 <Route exact path = "/restaurant/details/:restaurantId">
                     <RestaurantDetailPage/>
                     </Route>
@@ -51,8 +47,8 @@ function Router() {
                 <Route exact path = "/profile-page/edit/address">
                     <ProfileAddressPage/>
                 </Route>
-                <Route exact path = "/car">
-                    <CarPage/>
+                <Route exact path = "/cart">
+                    <CartPage/>
                 </Route>
                 <Route path = "/">
                         <h1>Error 404</h1>

@@ -217,7 +217,7 @@ function ProfilePage() {
                     <UserInfo data-testid="user-cpf">{profile.cpf}</UserInfo>
                 </UserData>
                 <IconEdit onClick={goToEditProfile} data-testid="edit-user">
-                    <p><img src={edit} /></p>
+                    <p><img alt="ícone editar" src={edit} /></p>
                 </IconEdit>
             </ContainerUser>
             <ContainerAddress>
@@ -226,7 +226,7 @@ function ProfilePage() {
                     <Address data-testid="user-address">{profile.address}</Address>
                 </AddressData>
                 <IconEditAddress onClick={goToEditAddress} data-testid="edit-address">
-                    <p><img src={edit} /></p>
+                    <p><img alt="ícone editar" src={edit} /></p>
                 </IconEditAddress>
             </ContainerAddress>
             <DateOrder>

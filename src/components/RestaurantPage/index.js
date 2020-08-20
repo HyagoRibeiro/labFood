@@ -2,8 +2,22 @@ import React, {useState, useEffect} from 'react';
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 
-import {RestContainer, Header, Form, Button, Image, Input, ScrollBar, ItemScrollBar, ProductContainer, ProductTitle, 
-ProductDescription, MainContainer, ContainerFooter, NotFound } from './Style';
+import {
+  RestContainer,
+  Header,
+  Form,
+  Button,
+  Image,
+  Input,
+  ScrollBar,
+  ItemScrollBar,
+  ProductContainer,
+  ProductTitle, 
+  ProductDescription,
+  MainContainer,
+  ContainerFooter,
+  NotFound
+} from './Style';
 import SearchIcon from '@material-ui/icons/Search';
 import Footer from './../Footer';
 import ActiveOrder from './../ActiveOrder/index';
@@ -65,8 +79,6 @@ function RestaurantPage() {
     return elemento.name.toLowerCase().includes(search.toLowerCase()) ? true : false
     })
   }
-
-  console.log(filterForName)
 
   const filteredRestaurant = (id) => {
       if(id === "Árabe") {
@@ -132,7 +144,7 @@ function RestaurantPage() {
     {activeOrder && <ActiveOrder activeOrder={activeOrder} />}
     <RestContainer>
       <Header>
-      <p>Ifuture</p> 
+      <p>LabFood</p> 
       </Header>
       <MainContainer>
         <Form>
@@ -162,7 +174,7 @@ function RestaurantPage() {
                     </ProductDescription>
                   </ProductContainer>
             );
-          }if (filters === "") {
+          } else if (filters === "") {
             return (
                   <ProductContainer onClick={() => sendDetailPage(restaurant.id)} key={restaurant.id}>
                     <Image BackgroundImage={restaurant.logoUrl} />
