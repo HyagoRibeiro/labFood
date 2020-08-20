@@ -60,7 +60,7 @@ function ProfileAddressPage() {
     const history = useHistory();
     const baseURL ="https://us-central1-missao-newton.cloudfunctions.net/fourFoodA"
 
-    const [address, setAddress] = useState({})
+    const [address] = useState({})
 
     useEffect(() => {
       const token = window.localStorage.getItem("token")
@@ -144,7 +144,7 @@ function ProfileAddressPage() {
                         id="outlined-required"
                         name="street"
                         data-testid="user-street"
-                        value={form.street}
+                        value={form.street || ''}
                         label="Logradouro"
                         placeholder="Rua / Av."
                         InputLabelProps={{
@@ -160,7 +160,7 @@ function ProfileAddressPage() {
                         type="number"
                         name="number"
                         data-testid="user-number"
-                        value={form.number}
+                        value={form.number || ''}
                         label="Número"
                         placeholder="Número"
                         InputLabelProps={{
@@ -173,7 +173,7 @@ function ProfileAddressPage() {
                         id="outlined-required"
                         name="complement"
                         data-testid="user-complement"
-                        value={form.complement}
+                        value={form.complement || ''}
                         label="Complemento"
                         placeholder="Apto. / Bloco"
                         InputLabelProps={{
@@ -188,7 +188,7 @@ function ProfileAddressPage() {
                         id="outlined-required"
                         name="neighbourhood"
                         data-testid="user-neighbourhood"
-                        value={form.neighbourhood}
+                        value={form.neighbourhood || ''}
                         label="Bairro"
                         placeholder="Bairro"
                         InputLabelProps={{
@@ -203,7 +203,7 @@ function ProfileAddressPage() {
                         id="outlined-required"
                         name="city"
                         data-testid="user-city"
-                        value={form.city}
+                        value={form.city || ''}
                         label="Cidade"
                         placeholder="Cidade"
                         InputLabelProps={{
@@ -218,7 +218,7 @@ function ProfileAddressPage() {
                         id="outlined-required"
                         name="state"
                         data-testid="user-state"
-                        value={form.state}
+                        value={form.state || ''}
                         label="Estado"
                         placeholder="Estado"
                         InputLabelProps={{

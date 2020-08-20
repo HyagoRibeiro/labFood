@@ -124,7 +124,7 @@ const updateProfile = (event) => {
             placeholder="Nome"
             margin="normal"
             name="name"
-            value={profile.name}
+            value={profile.name || ''}
             InputLabelProps={{
               shrink: true,
             }}
@@ -140,7 +140,7 @@ const updateProfile = (event) => {
             placeholder="E-mail"
             data-testid="email-input"
             name="email"
-            value={profile.email}
+            value={profile.email || ''}
             margin="normal"
             InputLabelProps={{
               shrink: true,
@@ -157,7 +157,7 @@ const updateProfile = (event) => {
               data-testid="cpf-input"
               margin="normal"
               name="cpf"
-              value={profile.cpf}
+              value={profile.cpf || ''}
               InputLabelProps={{
                 shrink: true,
               }}

@@ -66,8 +66,6 @@ function RestaurantPage() {
     })
   }
 
-  console.log(filterForName)
-
   const filteredRestaurant = (id) => {
       if(id === "Árabe") {
         if(filters !== "Árabe") {
@@ -132,7 +130,7 @@ function RestaurantPage() {
     {activeOrder && <ActiveOrder activeOrder={activeOrder} />}
     <RestContainer>
       <Header>
-      <p>Ifuture</p> 
+      <p>LabFood</p> 
       </Header>
       <MainContainer>
         <Form>
@@ -162,7 +160,7 @@ function RestaurantPage() {
                     </ProductDescription>
                   </ProductContainer>
             );
-          }if (filters === "") {
+          } else if (filters === "") {
             return (
                   <ProductContainer onClick={() => sendDetailPage(restaurant.id)} key={restaurant.id}>
                     <Image BackgroundImage={restaurant.logoUrl} />

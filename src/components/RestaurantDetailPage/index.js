@@ -55,65 +55,61 @@ function RestaurantDetailPage() {
   const salgadoCategory = restaurant.products && restaurant.products.filter( product => {
     if(product.category === "Salgado") {
       return true
-    };
+    } else {return <></>}
 })
 
   const pastelCategory = restaurant.products && restaurant.products.filter( product => {
     if(product.category === "Pastel") {
       return true
-    }
+    } else {return <></>}
 })
   const lancheCategory = restaurant.products && restaurant.products.filter( product => {
     if(product.category === "Lanche") {
       return true
-    }
+    } else {return <></>}
 })
 
   const acompanhamentoCategory = restaurant.products && restaurant.products.filter( product => {
     if(product.category === "Acompanhamento") {
       return true
-    }
+    } else {return <></>}
 })
 
   const pizzaCategory = restaurant.products && restaurant.products.filter( product => {
     if(product.category === "Pizza") {
       return true
-    }
+    } else {return <></>}
 })
 
   const bebidaCategory = restaurant.products && restaurant.products.filter( product => {
     if(product.category === "Bebida") {
       return true
-    }
+    } else {return <></>}
 })
 
 const sorveteCategory = restaurant.products && restaurant.products.filter( product => {
   if(product.category === "Sorvete") {
     return true
-  }
+  } else {return <></>}
 })
 
 const refeicaoCategory = restaurant.products && restaurant.products.filter( product => {
   if(product.category === "Refeição") {
     return true
-  }
+  } else {return <></>}
 })
 
 const outrosCategory = restaurant.products && restaurant.products.filter( product => {
   if(product.category === "Outros") {
     return true
-  }
+  } else {return <></>}
 })
 
 const doceCategory = restaurant.products && restaurant.products.filter( product => {
   if(product.category === "Doce") {
     return true
-  }
+  } else {return <></>}
 })
-
-const goToCartPage = () => {
-  history.push("/car")
-}
 
   return (
     <>
@@ -151,7 +147,7 @@ const goToCartPage = () => {
                             {cartContext.carrinho.map( productCart => {
                               if ( product.id === productCart.id ) {
                                 return <ContainerContador><Contador key={productCart.id}>{productCart.quantity}</Contador></ContainerContador>
-                              }
+                              } else {return <></>}
                             })}
                         </Top>
                             <Ingredients>{product.description}</Ingredients>
@@ -162,7 +158,7 @@ const goToCartPage = () => {
                         </DescriptionContainer>
                     </ProductContainer>
                   </>
-                  )}
+                  )} else {return <></>}
             })}
           {salgadoCategory && salgadoCategory.length !== 0 ? <SectionTitle>Salgado</SectionTitle> : <></>}
             {restaurant.products && restaurant.products.map((product, index) => {
@@ -179,7 +175,7 @@ const goToCartPage = () => {
                             {cartContext.carrinho.map( productCart => {
                               if ( product.id === productCart.id ) {
                                 return <ContainerContador><Contador key={productCart.id}>{productCart.quantity}</Contador></ContainerContador>
-                              }
+                              } else {return <></>}
                             })}
                           </Top>
                             <Ingredients>{product.description}</Ingredients>
@@ -190,7 +186,7 @@ const goToCartPage = () => {
                         </DescriptionContainer>
                     </ProductContainer>
                   </>
-                  )}
+                  )} else {return <></>}
             })}
 
             {pastelCategory && pastelCategory.length !== 0 ? <SectionTitle>Pastel</SectionTitle> : <></>}
@@ -208,7 +204,7 @@ const goToCartPage = () => {
                             {cartContext.carrinho.map( productCart => {
                               if ( product.id === productCart.id ) {
                                 return <ContainerContador><Contador key={productCart.id}>{productCart.quantity}</Contador></ContainerContador>
-                              }
+                              } else {return <></>}
                             })}
                         </Top>
                             <Ingredients>{product.description}</Ingredients>
@@ -219,7 +215,7 @@ const goToCartPage = () => {
                         </DescriptionContainer>
                     </ProductContainer>
                   </>
-                  )}
+                  )} else {return <></>}
             })}
 
             {lancheCategory && lancheCategory.length !== 0 ? <SectionTitle>Lanche</SectionTitle> : <></>}
@@ -237,7 +233,7 @@ const goToCartPage = () => {
                             {cartContext.carrinho.map( productCart => {
                               if ( product.id === productCart.id ) {
                                 return <ContainerContador><Contador key={productCart.id}>{productCart.quantity}</Contador></ContainerContador>
-                              }
+                              } else {return <></>}
                             })}
                         </Top>
                             <Ingredients>{product.description}</Ingredients>
@@ -248,7 +244,7 @@ const goToCartPage = () => {
                         </DescriptionContainer>
                     </ProductContainer>
                   </>
-                  )}
+                  )} else {return <></>}
             })}
 
             {acompanhamentoCategory && acompanhamentoCategory.length !== 0 ? <SectionTitle>Acompanhamento</SectionTitle> : <></>}
@@ -266,7 +262,7 @@ const goToCartPage = () => {
                             {cartContext.carrinho.map( productCart => {
                               if ( product.id === productCart.id ) {
                                 return <ContainerContador><Contador key={productCart.id}>{productCart.quantity}</Contador></ContainerContador>
-                              }
+                              } else {return <></>}
                             })}
                         </Top>
                             <Ingredients>{product.description}</Ingredients>
@@ -277,7 +273,7 @@ const goToCartPage = () => {
                         </DescriptionContainer>
                     </ProductContainer>
                   </>
-                  )}
+                  )} else {return <></>}
             })}
 
             {pizzaCategory && pizzaCategory.length !== 0 ? <SectionTitle>Pizza</SectionTitle> : <></>}
@@ -295,7 +291,7 @@ const goToCartPage = () => {
                             {cartContext.carrinho.map( productCart => {
                               if ( product.id === productCart.id ) {
                                 return <ContainerContador><Contador key={productCart.id}>{productCart.quantity}</Contador></ContainerContador>
-                              }
+                              } else {return <></>}
                             })}
                         </Top>
                             <Ingredients>{product.description}</Ingredients>
@@ -306,7 +302,7 @@ const goToCartPage = () => {
                         </DescriptionContainer>
                     </ProductContainer>
                   </>
-                  )}
+                  )} else {return <></>}
             })}
 
             {bebidaCategory && bebidaCategory.length !== 0 ? <SectionTitle>Bebida</SectionTitle> : <></>}
@@ -324,7 +320,7 @@ const goToCartPage = () => {
                             {cartContext.carrinho.map( productCart => {
                               if ( product.id === productCart.id ) {
                                 return <ContainerContador><Contador key={productCart.id}>{productCart.quantity}</Contador></ContainerContador>
-                              }
+                              } else {return <></>}
                             })}
                         </Top>
                             <Ingredients>{product.description}</Ingredients>
@@ -335,7 +331,7 @@ const goToCartPage = () => {
                         </DescriptionContainer>
                     </ProductContainer>
                   </>
-                  )}
+                  )} else {return <></>}
             })}
 
             {sorveteCategory && sorveteCategory.length !== 0 ? <SectionTitle>Sorvete</SectionTitle> : <></>}
@@ -353,7 +349,7 @@ const goToCartPage = () => {
                             {cartContext.carrinho.map( productCart => {
                               if ( product.id === productCart.id ) {
                                 return <ContainerContador><Contador key={productCart.id}>{productCart.quantity}</Contador></ContainerContador>
-                              }
+                              } else {return <></>}
                             })}
                         </Top>
                             <Ingredients>{product.description}</Ingredients>
@@ -364,7 +360,7 @@ const goToCartPage = () => {
                         </DescriptionContainer>
                     </ProductContainer>
                   </>
-                  )}
+                  )} else {return <></>}
             })}
 
             {doceCategory && doceCategory.length !== 0 ? <SectionTitle>Doce</SectionTitle> : <></>}
@@ -382,7 +378,7 @@ const goToCartPage = () => {
                             {cartContext.carrinho.map( productCart => {
                               if ( product.id === productCart.id ) {
                                 return <ContainerContador><Contador key={productCart.id}>{productCart.quantity}</Contador></ContainerContador>
-                              }
+                              } else {return <></>}
                             })}
                         </Top>
                             <Ingredients>{product.description}</Ingredients>
@@ -393,7 +389,7 @@ const goToCartPage = () => {
                         </DescriptionContainer>
                     </ProductContainer>
                   </>
-                  )}
+                  )} else {return <></>}
             })}
 
             {outrosCategory && outrosCategory.length !== 0 ? <SectionTitle>Outros</SectionTitle> : <></>}
@@ -411,7 +407,7 @@ const goToCartPage = () => {
                             {cartContext.carrinho.map( productCart => {
                               if ( product.id === productCart.id ) {
                                 return <ContainerContador><Contador key={productCart.id}>{productCart.quantity}</Contador></ContainerContador>
-                              }
+                              } else {return <></>}
                             })}
                         </Top>
                             <Ingredients>{product.description}</Ingredients>
@@ -422,7 +418,7 @@ const goToCartPage = () => {
                         </DescriptionContainer>
                     </ProductContainer>
                   </>
-                  )}
+                  )} else {return <></>}
             })}
         </SectionContainer>
       </RestContainer>

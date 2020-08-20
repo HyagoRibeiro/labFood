@@ -1,6 +1,5 @@
 import React, {useState, useContext, useEffect} from 'react'
 import Radio from '@material-ui/core/Radio';
-import { useHistory } from "react-router-dom";
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
@@ -18,13 +17,10 @@ import Footer from './../Footer';
 const CartPage = () => {
 
   const cartContext = useContext(CartContext);
-  const history = useHistory();
-  console.log(cartContext)
 
-  const [ endereco, setEndereco ] = useState('Rua retiro dos artistas')
   const [ paymentMethod, setPaymentMethod ] = useState('')
-  const [value, setValue] = useState('');
   const [restaurant, setRestaurant] = useState({})
+  const [profile, setProfile] = useState({})
 
   
   let totalValue = 0;
@@ -34,13 +30,10 @@ const CartPage = () => {
     arrayPlaceOrder.push({quantity: Number(product.quantity), id: product.id})
   });
 
-
   const removeProduct = (productId) => {
     cartContext.dispatch({ type: "REMOVE_ITEM_FROM_CART", productId: productId });
     console.log(productId)
   }
-  
-  console.log(arrayPlaceOrder)
 
   const token = window.localStorage.getItem('token');
 
@@ -59,7 +52,18 @@ const CartPage = () => {
 
     useEffect(() => {
       getRestaurantDetail()
+      getProfile()
     }, [])
+
+  const getProfile = () => {
+        axios.get(`https://us-central1-missao-newton.cloudfunctions.net/fourFoodA/profile`,{headers: {
+            auth: token
+        }}).then((response)=>{
+            setProfile(response.data.user)
+        }).catch((error) => {
+            alert("Erro ao mostrar usuário")
+        })
+  }
 
   const handleChangePaymentMethod = (event) => {
     setPaymentMethod(event.target.value);
@@ -75,7 +79,7 @@ const CartPage = () => {
           products: arrayPlaceOrder,
           paymentMethod: paymentMethod
         }
-        const response = await axios.post(`https://us-central1-missao-newton.cloudfunctions.net/fourFoodA/restaurants/${cartContext.carrinho[0].restauranteId}/order`, body, {
+        await axios.post(`https://us-central1-missao-newton.cloudfunctions.net/fourFoodA/restaurants/${cartContext.carrinho[0].restauranteId}/order`, body, {
           headers: {
             auth: token
           }
@@ -95,7 +99,7 @@ const CartPage = () => {
             </Header>
               <AddressContainer>
                 <AddressTitle>Endereço de entrega</AddressTitle>
-                <AddressText>{endereco}</AddressText>
+                <AddressText>{profile.address}</AddressText>
               </AddressContainer>
           <ContainerCart>
               {cartContext.carrinho.length === 0 ? <TextEmpty>Carrinho vazio</TextEmpty> : 

@@ -114,7 +114,7 @@ function AddressPage (){
       }
 
       const goToLoginPage =() => {
-          history.push('/sign-up')
+          history.push('/login')
       }
 
     return(
