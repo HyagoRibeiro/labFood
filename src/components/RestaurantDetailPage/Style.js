@@ -158,3 +158,18 @@ export const Contador = styled.p `
     margin: 0;
     padding: 0;
 `
+
+export const ContainerFooter = styled.div `
+    background-color: #fff;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 2;
+`;
+
+export const FakeContainer = styled.div `
+    width: 100vw;
+    height: 50px;
+    position: relative;
+    z-index: 1;
+`;

@@ -143,12 +143,14 @@ export const ContainerFooter = styled.div `
     position: fixed;
     bottom: 0;
     width: 100%;
+    z-index: 2;
 `;
 
 export const FakeContainer = styled.div `
     width: 100vw;
     height: 50px;
     position: relative;
+    z-index: 1;
 `;
 
 export const ContainerCart = styled.div`
