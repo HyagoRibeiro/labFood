@@ -18,11 +18,11 @@ function Router() {
     return(
         <BrowserRouter>
             <Switch>
-                <Route exact path="/home">
-                    <Home/>
+                <Route exact path="/login">
+                    <LoginPage/>
                 </Route>
                 <Route exact path = "/">
-                    <LoginPage/>
+                    <Home/>
                 </Route>
                 <Route exact path = "/sign-up">
                     <SignupPage/>
@@ -53,6 +53,9 @@ function Router() {
                 </Route>
                 <Route exact path = "/car">
                     <CarPage/>
+                </Route>
+                <Route path = "/">
+                        <h1>Error 404</h1>
                 </Route>
             </Switch>
         </BrowserRouter>

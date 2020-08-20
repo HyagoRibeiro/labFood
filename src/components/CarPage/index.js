@@ -35,9 +35,9 @@ const CarPage = () => {
   });
 
 
-  const removeProduct = (produtoId) => {
-    cartContext.dispatch({ type: "REMOVE_ITEM_FROM_CART", produtoId: produtoId });
-    console.log(produtoId)
+  const removeProduct = (productId) => {
+    cartContext.dispatch({ type: "REMOVE_ITEM_FROM_CART", productId: productId });
+    console.log(productId)
   }
   
   console.log(arrayPlaceOrder)
@@ -67,19 +67,23 @@ const CarPage = () => {
 
   const handlePlaceOrder = async (event) => {
     event.preventDefault()
-    try {
-      const body = {
-        products: arrayPlaceOrder,
-        paymentMethod: paymentMethod
-      }
-      const response = await axios.post(`https://us-central1-missao-newton.cloudfunctions.net/fourFoodA/restaurants/${cartContext.carrinho[0].restauranteId}/order`, body, {
-        headers: {
-          auth: token
+    if(cartContext.carrinho.length === 0 || paymentMethod === '') {
+      alert("Adicione itens ao carrinho ou selecione um método de pagamento")
+    } else {
+      try {
+        const body = {
+          products: arrayPlaceOrder,
+          paymentMethod: paymentMethod
         }
-      })
-      alert("Pedido realizado com sucesso")
-    } catch(error) {
-      console.log(error.response)
+        const response = await axios.post(`https://us-central1-missao-newton.cloudfunctions.net/fourFoodA/restaurants/${cartContext.carrinho[0].restauranteId}/order`, body, {
+          headers: {
+            auth: token
+          }
+        })
+        alert("Pedido realizado com sucesso")
+      } catch(error) {
+        console.log(error.response)
+      }
     }
   }
 
@@ -126,7 +130,7 @@ const CarPage = () => {
                 </div>
               </>}
                 <ContainerValues>
-                  <DeliveryValue>Frete R${restaurant.shipping ? restaurant.shipping.toFixed(2) : `0,00`}</DeliveryValue>
+                  <DeliveryValue>Frete R${restaurant.shipping && cartContext.carrinho.length !== 0 ? restaurant.shipping.toFixed(2) : `0,00`}</DeliveryValue>
                     <PriceTotal>
                       <TitleTotal>SUBTOTAL</TitleTotal>
                       <TextTotal>R${totalValue.toFixed(2)}</TextTotal>

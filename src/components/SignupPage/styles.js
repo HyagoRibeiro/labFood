@@ -36,6 +36,12 @@ export const TituloLogin = styled.p`
     margin: 0.75rem auto;
 `
 
+export const FormContainer = styled.form `
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+`;
+
 export const ContainerInputs = styled.div`
     width: 22.5rem;
     height: 4.5rem;

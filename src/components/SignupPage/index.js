@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { ContainerLogin, LogoImg, ContainerTitulo, TituloLogin, ContainerInputs, StyledTextField, StyledButton, ReturnButton, ButtonContainer, Message} from './styles'
+import { ContainerLogin, FormContainer, LogoImg, ContainerTitulo, TituloLogin, ContainerInputs, StyledTextField, StyledButton, ReturnButton, ButtonContainer, Message} from './styles'
 import Logo from '../../Images/logo-future-eats.png'
 import InputAdornment from '@material-ui/core/InputAdornment';
 import IconButton from '@material-ui/core/IconButton';
@@ -86,7 +86,7 @@ function SinupPage() {
       <ContainerTitulo>
         <TituloLogin>Cadastrar</TituloLogin>
       </ContainerTitulo>
-      <form onSubmit={handleSignUp}>
+      <FormContainer onSubmit={handleSignUp}>
       <ContainerInputs>
         <StyledTextField 
           name="name"
@@ -193,7 +193,7 @@ function SinupPage() {
       </ContainerInputs>
       {renderMessage()}
       <StyledButton>Criar</StyledButton>
-      </form>
+      </FormContainer>
     </ContainerLogin>
   );
 }
