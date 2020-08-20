@@ -1,60 +1,18 @@
-import React, { useState, useEffect } from 'react'
-import TextField from '@material-ui/core/TextField'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import {useHistory} from 'react-router-dom';
+import useForm from '../useForm';
+
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-import styled from 'styled-components'
-import axios from 'axios'
-import {useHistory} from 'react-router-dom'
-import useForm from '../useForm'
-
-const DivSignup = styled.div`
-    width: 22.5rem;
-    height: 40rem;
-    margin: 0 auto;
-`
-
-const FormSignup = styled.form`
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    height: 32rem;
-`
-
-const ButtonCreate = styled.button`
-    width: 20.5rem;
-    height: 2.625rem;
-    border-radius: 2px;
-    background-color: red;
-    border: none;
-    font-family: 'Roboto', sans-serif;
-    font-size: 1rem;
-`
-
-const TextFieldSignup = styled(TextField)`
-    width: 20.5rem;
-    height: 3.5rem;
-`
-
-const TitleSignup = styled.p`
-    width: 18.5rem;
-    height: 1.125rem;
-    font-family: Roboto;
-    font-size: 1rem;
-    font-weight: 500;
-    margin: 0 auto;
-`
-
-const DivArrowBack = styled.div`
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    margin-left: 20px;
-    height: 3rem;
-`
-
-const DivTitle = styled.div`
-    height: 2.625rem;
-`
+import {
+    DivSignup,
+    FormSignup,
+    ButtonCreate,
+    TextFieldSignup,
+    TitleSignup,
+    DivArrowBack,
+    DivTitle
+} from './style';
 
 function ProfileAddressPage() {
     const history = useHistory();
@@ -131,14 +89,21 @@ function ProfileAddressPage() {
     return(
         <DivSignup>
             <DivArrowBack>
-                <ArrowBackIosIcon cursor="pointer" onClick={Back}/>
+                <ArrowBackIosIcon
+                    cursor="pointer"
+                    onClick={Back}
+                />
             </DivArrowBack>
             <hr/>
             <DivTitle>
                 <TitleSignup>Endereço</TitleSignup>
             </DivTitle>
             {address &&
-                <FormSignup  noValidate autoComplete="off" onSubmit={putAddress}>
+                <FormSignup
+                    noValidate
+                    autoComplete="off"
+                    onSubmit={putAddress}
+                >
                     <TextFieldSignup
                         required
                         id="outlined-required"

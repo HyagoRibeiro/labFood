@@ -6,36 +6,54 @@ import FormControl from '@material-ui/core/FormControl';
 import CartContext from '../../context/CartContext'
 import axios from 'axios';
 
-import { ProductContainer, ImageProduct, DescriptionContainer, ProductTitle, Ingredients, 
-  Bottom, Price, Top, ContainerContador, Contador, ContainerCart, ButtonRemove, Header,
-HeaderTitle, AddressContainer, AddressTitle, AddressText, RestaurantTitle, RestaurantAddress,
-RestaurantTimeDelivery, ContainerRestaurant, ContainerValues, DeliveryValue,
-TitleTotal, TextTotal, PriceTotal, TitleForm, SendRequestForm, ButtonSend, TextEmpty, ContainerFooter, FakeContainer } from './style';
+import {
+  ProductContainer,
+  ImageProduct,
+  DescriptionContainer,
+  ProductTitle,
+  Ingredients, 
+  Bottom,
+  Price,
+  Top,
+  ContainerContador,
+  Contador,
+  ContainerCart,
+  ButtonRemove,
+  Header,
+  HeaderTitle,
+  AddressContainer,
+  AddressTitle,
+  AddressText,
+  RestaurantTitle,
+  RestaurantAddress,
+  RestaurantTimeDelivery,
+  ContainerRestaurant,
+  ContainerValues,
+  DeliveryValue,
+  TitleTotal,
+  TextTotal,
+  PriceTotal,
+  TitleForm,
+  SendRequestForm,
+  ButtonSend,
+  TextEmpty,
+  ContainerFooter, 
+  FakeContainer
+} from './style';
 import Footer from './../Footer';
 
 
 const CartPage = () => {
-
   const cartContext = useContext(CartContext);
-
   const [ paymentMethod, setPaymentMethod ] = useState('')
   const [restaurant, setRestaurant] = useState({})
   const [profile, setProfile] = useState({})
-
-  
-  let totalValue = 0;
-  let arrayPlaceOrder = [];
-  cartContext.carrinho.forEach(product => {
-    totalValue = totalValue + product.price * product.quantity;
-    arrayPlaceOrder.push({quantity: Number(product.quantity), id: product.id})
-  });
-
-  const removeProduct = (productId) => {
-    cartContext.dispatch({ type: "REMOVE_ITEM_FROM_CART", productId: productId });
-    console.log(productId)
-  }
-
   const token = window.localStorage.getItem('token');
+  
+  useEffect(() => {
+    getRestaurantDetail()
+    getProfile()
+  }, [])
 
   const getRestaurantDetail = async () => {
     try {
@@ -48,27 +66,22 @@ const CartPage = () => {
     } catch(error) {
       console.log(error.response)
     }
-}; 
-
-    useEffect(() => {
-      getRestaurantDetail()
-      getProfile()
-    }, [])
+  }; 
 
   const getProfile = () => {
-        axios.get(`https://us-central1-missao-newton.cloudfunctions.net/fourFoodA/profile`,{headers: {
-            auth: token
-        }}).then((response)=>{
-            setProfile(response.data.user)
-        }).catch((error) => {
-            alert("Erro ao mostrar usuário")
-        })
-  }
-
+      axios.get(`https://us-central1-missao-newton.cloudfunctions.net/fourFoodA/profile`,{headers: {
+          auth: token
+      }}).then((response)=>{
+          setProfile(response.data.user)
+      }).catch((error) => {
+          alert("Erro ao mostrar usuário")
+      })
+  };
+  
   const handleChangePaymentMethod = (event) => {
     setPaymentMethod(event.target.value);
   };
-
+  
   const handlePlaceOrder = async (event) => {
     event.preventDefault()
     if(cartContext.carrinho.length === 0 || paymentMethod === '') {
@@ -90,7 +103,20 @@ const CartPage = () => {
       }
     }
   }
-
+  
+  let totalValue = 0;
+  let arrayPlaceOrder = [];
+  cartContext.carrinho.forEach(product => {
+    totalValue = totalValue + product.price * product.quantity;
+    arrayPlaceOrder.push({quantity: Number(product.quantity), id: product.id})
+  });
+  
+  const removeProduct = (productId) => {
+    cartContext.dispatch({
+      type: "REMOVE_ITEM_FROM_CART",
+      productId: productId
+    });
+  }
 
   return (
         <>
@@ -112,14 +138,21 @@ const CartPage = () => {
                 <div>
                   {cartContext.carrinho && cartContext.carrinho.map(product => {
                     return (
-                        <ProductContainer key={product.id}>
+                        <ProductContainer
+                          key={product.id}
+                        >
                           <div>
-                            {product.photoUrl && <ImageProduct BackgroundImage={product.photoUrl} />}
+                            {product.photoUrl && (
+                              <ImageProduct BackgroundImage={product.photoUrl} />
+                              )
+                            }
                           </div>
                           <DescriptionContainer>
                               <Top>
                                 <ProductTitle>{product.name}</ProductTitle>
-                                <ContainerContador><Contador>{product.quantity}</Contador></ContainerContador>
+                                <ContainerContador>
+                                  <Contador>{product.quantity}</Contador>
+                                </ContainerContador>
                               </Top>
                               <Ingredients>{product.description}</Ingredients>
                                   <Bottom>
@@ -140,12 +173,25 @@ const CartPage = () => {
                       <TextTotal>R${totalValue.toFixed(2)}</TextTotal>
                     </PriceTotal>
                 </ContainerValues>
-          <SendRequestForm onSubmit={handlePlaceOrder}>
+          <SendRequestForm
+            onSubmit={handlePlaceOrder}
+          >
               <TitleForm>Forma de pagamento</TitleForm>
               <FormControl component="fieldset">
-                <RadioGroup value={paymentMethod} onChange={handleChangePaymentMethod}>
-                  <FormControlLabel value="money" control={<Radio />} label="Dinheiro" />
-                  <FormControlLabel value="creditcard" control={<Radio />} label="Cartão de Crédito" />
+                <RadioGroup
+                  value={paymentMethod}
+                  onChange={handleChangePaymentMethod}
+                >
+                  <FormControlLabel
+                    value="money"
+                    control={<Radio />}
+                    label="Dinheiro"
+                  />
+                  <FormControlLabel
+                    value="creditcard"
+                    control={<Radio />}
+                    label="Cartão de Crédito"
+                  />
                  </RadioGroup>
               </FormControl>
             <ButtonSend>Confirmar</ButtonSend>

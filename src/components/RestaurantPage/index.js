@@ -2,8 +2,22 @@ import React, {useState, useEffect} from 'react';
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 
-import {RestContainer, Header, Form, Button, Image, Input, ScrollBar, ItemScrollBar, ProductContainer, ProductTitle, 
-ProductDescription, MainContainer, ContainerFooter, NotFound } from './Style';
+import {
+  RestContainer,
+  Header,
+  Form,
+  Button,
+  Image,
+  Input,
+  ScrollBar,
+  ItemScrollBar,
+  ProductContainer,
+  ProductTitle, 
+  ProductDescription,
+  MainContainer,
+  ContainerFooter,
+  NotFound
+} from './Style';
 import SearchIcon from '@material-ui/icons/Search';
 import Footer from './../Footer';
 import ActiveOrder from './../ActiveOrder/index';

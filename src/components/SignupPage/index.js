@@ -1,14 +1,27 @@
 import React, {useState} from 'react';
-import { ContainerLogin, FormContainer, LogoImg, ContainerTitulo, TituloLogin, ContainerInputs, StyledTextField, StyledButton, ReturnButton, ButtonContainer, Message} from './styles'
+import { useHistory } from "react-router-dom";
+import useForm from '../../Hooks/useForm'
+import Axios from 'axios';
+
 import Logo from '../../Images/logo-future-eats.png'
 import InputAdornment from '@material-ui/core/InputAdornment';
 import IconButton from '@material-ui/core/IconButton';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-import { useHistory } from "react-router-dom";
-import useForm from '../../Hooks/useForm'
-import Axios from 'axios';
+import {
+  ContainerLogin, 
+  FormContainer, 
+  LogoImg, 
+  ContainerTitulo, 
+  TituloLogin, 
+  ContainerInputs, 
+  StyledTextField, 
+  StyledButton, 
+  ReturnButton, 
+  ButtonContainer, 
+  Message
+} from './styles'
 
 function SinupPage() {
   const history = useHistory();
@@ -80,7 +93,11 @@ function SinupPage() {
   return (
     <ContainerLogin>
       <ButtonContainer>
-        <ReturnButton onClick={goToLoginPage}> <ArrowBackIosIcon/> </ReturnButton>
+        <ReturnButton
+          onClick={goToLoginPage}
+        > 
+          <ArrowBackIosIcon/>
+        </ReturnButton>
       </ButtonContainer>        
       <LogoImg src={Logo} />
       <ContainerTitulo>

@@ -49,7 +49,6 @@ const TotalPrice = styled.p `
 `;
 
 function ActiveOrder(props) {
-
     return (
         <ContainerActive>
             <ActiveDatas>

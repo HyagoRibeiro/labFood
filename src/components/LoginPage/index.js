@@ -1,12 +1,23 @@
 import React, {useState, useEffect} from 'react';
 import Logo from '../../Images/logo-future-eats.png'
-import {ContainerLogin, LogoImg, TituloLogin, ContainerTitulo, StyledTextField, ContainerInputs, StyledButton, SignUpTitle, SignUpButton} from './styles'
+import { useHistory } from "react-router-dom";
+import Axios from 'axios';
+
+import {
+  ContainerLogin,
+  LogoImg,
+  TituloLogin,
+  ContainerTitulo,
+  StyledTextField,
+  ContainerInputs,
+  StyledButton,
+  SignUpTitle,
+  SignUpButton
+} from './styles'
 import InputAdornment from '@material-ui/core/InputAdornment';
 import IconButton from '@material-ui/core/IconButton';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import { useHistory } from "react-router-dom";
-import Axios from 'axios';
 
 function LoginPage() {
   const history = useHistory();
