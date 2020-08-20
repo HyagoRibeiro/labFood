@@ -15,7 +15,7 @@ TitleTotal, TextTotal, PriceTotal, TitleForm, SendRequestForm, ButtonSend, TextE
 import Footer from './../Footer';
 
 
-const CarPage = () => {
+const CartPage = () => {
 
   const cartContext = useContext(CartContext);
   const history = useHistory();
@@ -156,4 +156,4 @@ const CarPage = () => {
   
 }
 
-export default CarPage
+export default CartPage
