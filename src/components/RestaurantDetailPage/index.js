@@ -73,6 +73,13 @@ function RestaurantDetailPage() {
     setProduct(allProduct)
   }
 
+  const removeProduct = (productId) => {
+    cartContext.dispatch({
+      type: "REMOVE_ITEM_FROM_CART",
+      productId: productId
+    });
+  }
+
   const salgadoCategory = restaurant.products && restaurant.products.filter( product => {
     if(product.category === "Salgado") {
       return true
@@ -216,7 +223,7 @@ const doceCategory = restaurant.products && restaurant.products.filter( product 
                   )} else {return <></>}
             })}
           {salgadoCategory && salgadoCategory.length !== 0 ? <SectionTitle>Salgado</SectionTitle> : <></>}
-            {restaurant.products && restaurant.products.map((product, index) => {
+            {restaurant.products && restaurant.products.map((product) => {
                 if(product.category === "Salgado") {
                   return (
                     <>
@@ -242,7 +249,8 @@ const doceCategory = restaurant.products && restaurant.products.filter( product 
                             <Ingredients>{product.description}</Ingredients>
                                 <Bottom>
                                   <Price>R${product.price.toFixed(2)}</Price>
-                                  <ButtonAdd onClick={() => goToAddQuantity(product)}>adicionar</ButtonAdd>
+                                  {cartContext.carrinho.findIndex(productCart => product.id === productCart.id) !== -1 ? <ButtonAdd onClick={() => removeProduct(product.id)}>Remover</ButtonAdd> :
+                                   <ButtonAdd onClick={() => goToAddQuantity(product)}>adicionar</ButtonAdd>}
                                 </Bottom>
                         </DescriptionContainer>
                     </ProductContainer>
