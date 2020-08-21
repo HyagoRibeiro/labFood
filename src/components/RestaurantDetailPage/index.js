@@ -145,7 +145,6 @@ const doceCategory = restaurant.products && restaurant.products.filter( product 
 
   return (
     <>
-    <Container>
       {showQuantity && (
         <AddQuantity
         showQuantity={showQuantity}
@@ -155,6 +154,7 @@ const doceCategory = restaurant.products && restaurant.products.filter( product 
         />
         )
       }
+    <Container>
       <Header>
         <p
           onClick={goToRestaurantPage}
@@ -202,7 +202,6 @@ const doceCategory = restaurant.products && restaurant.products.filter( product 
                           {product.photoUrl && <ImageProduct BackgroundImage={product.photoUrl} />}
                         </div>
                         <DescriptionContainer>
-                        <Top>
                             <ProductTitle>{product.name}</ProductTitle>
                             {cartContext.carrinho.map( productCart => {
                               if ( product.id === productCart.id ) {
@@ -215,12 +214,10 @@ const doceCategory = restaurant.products && restaurant.products.filter( product 
                                         </ContainerContador>
                               } else {return <></>}
                             })}
-                        </Top>
                             <Ingredients>{product.description}</Ingredients>
-                                <Bottom>
                                   <Price>R${product.price.toFixed(2)}</Price>
-                                  <ButtonAdd onClick={() => goToAddQuantity(product)}>adicionar</ButtonAdd>
-                                </Bottom>
+                                  {cartContext.carrinho.findIndex(productCart => product.id === productCart.id) !== -1 ? <ButtonAdd onClick={() => removeProduct(product.id)}>Remover</ButtonAdd> :
+                                   <ButtonAdd onClick={() => goToAddQuantity(product)}>adicionar</ButtonAdd>}
                         </DescriptionContainer>
                     </ProductContainer>
                   </>
@@ -236,7 +233,6 @@ const doceCategory = restaurant.products && restaurant.products.filter( product 
                           {product.photoUrl && <ImageProduct BackgroundImage={product.photoUrl} />}
                         </div>
                         <DescriptionContainer>
-                          <Top>
                             <ProductTitle>{product.name}</ProductTitle>
                             {cartContext.carrinho.map( productCart => {
                               if ( product.id === productCart.id ) {
@@ -249,13 +245,10 @@ const doceCategory = restaurant.products && restaurant.products.filter( product 
                                         </ContainerContador>
                               } else {return <></>}
                             })}
-                          </Top>
                             <Ingredients>{product.description}</Ingredients>
-                                <Bottom>
                                   <Price>R${product.price.toFixed(2)}</Price>
                                   {cartContext.carrinho.findIndex(productCart => product.id === productCart.id) !== -1 ? <ButtonAdd onClick={() => removeProduct(product.id)}>Remover</ButtonAdd> :
                                    <ButtonAdd onClick={() => goToAddQuantity(product)}>adicionar</ButtonAdd>}
-                                </Bottom>
                         </DescriptionContainer>
                     </ProductContainer>
                   </>
@@ -272,7 +265,6 @@ const doceCategory = restaurant.products && restaurant.products.filter( product 
                           {product.photoUrl && <ImageProduct BackgroundImage={product.photoUrl} />}
                         </div>
                         <DescriptionContainer>
-                        <Top>
                             <ProductTitle>{product.name}</ProductTitle>
                             {cartContext.carrinho.map( productCart => {
                               if ( product.id === productCart.id ) {
@@ -285,12 +277,10 @@ const doceCategory = restaurant.products && restaurant.products.filter( product 
                                         </ContainerContador>
                               } else {return <></>}
                             })}
-                        </Top>
                             <Ingredients>{product.description}</Ingredients>
-                                <Bottom>
                                   <Price>R${product.price.toFixed(2)}</Price>
-                                  <ButtonAdd onClick={() => goToAddQuantity(product)}>adicionar</ButtonAdd>
-                                </Bottom>
+                                  {cartContext.carrinho.findIndex(productCart => product.id === productCart.id) !== -1 ? <ButtonAdd onClick={() => removeProduct(product.id)}>Remover</ButtonAdd> :
+                                   <ButtonAdd onClick={() => goToAddQuantity(product)}>adicionar</ButtonAdd>}
                         </DescriptionContainer>
                     </ProductContainer>
                   </>
@@ -307,7 +297,6 @@ const doceCategory = restaurant.products && restaurant.products.filter( product 
                           {product.photoUrl && <ImageProduct BackgroundImage={product.photoUrl} />}
                         </div>
                         <DescriptionContainer>
-                        <Top>
                             <ProductTitle>{product.name}</ProductTitle>
                             {cartContext.carrinho.map( productCart => {
                               if ( product.id === productCart.id ) {
@@ -320,12 +309,10 @@ const doceCategory = restaurant.products && restaurant.products.filter( product 
                                         </ContainerContador>
                               } else {return <></>}
                             })}
-                        </Top>
                             <Ingredients>{product.description}</Ingredients>
-                                <Bottom>
                                   <Price>R${product.price.toFixed(2)}</Price>
-                                  <ButtonAdd onClick={() => goToAddQuantity(product)}>adicionar</ButtonAdd>
-                                </Bottom>
+                                  {cartContext.carrinho.findIndex(productCart => product.id === productCart.id) !== -1 ? <ButtonAdd onClick={() => removeProduct(product.id)}>Remover</ButtonAdd> :
+                                   <ButtonAdd onClick={() => goToAddQuantity(product)}>adicionar</ButtonAdd>}
                         </DescriptionContainer>
                     </ProductContainer>
                   </>
@@ -342,7 +329,6 @@ const doceCategory = restaurant.products && restaurant.products.filter( product 
                           {product.photoUrl && <ImageProduct BackgroundImage={product.photoUrl} />}
                         </div>
                         <DescriptionContainer>
-                        <Top>
                             <ProductTitle>{product.name}</ProductTitle>
                             {cartContext.carrinho.map( productCart => {
                               if ( product.id === productCart.id ) {
@@ -355,12 +341,10 @@ const doceCategory = restaurant.products && restaurant.products.filter( product 
                                         </ContainerContador>
                               } else {return <></>}
                             })}
-                        </Top>
                             <Ingredients>{product.description}</Ingredients>
-                                <Bottom>
                                   <Price>R${product.price.toFixed(2)}</Price>
-                                  <ButtonAdd onClick={() => goToAddQuantity(product)}>adicionar</ButtonAdd>
-                                </Bottom>
+                                  {cartContext.carrinho.findIndex(productCart => product.id === productCart.id) !== -1 ? <ButtonAdd onClick={() => removeProduct(product.id)}>Remover</ButtonAdd> :
+                                   <ButtonAdd onClick={() => goToAddQuantity(product)}>adicionar</ButtonAdd>}
                         </DescriptionContainer>
                     </ProductContainer>
                   </>
@@ -377,7 +361,6 @@ const doceCategory = restaurant.products && restaurant.products.filter( product 
                           {product.photoUrl && <ImageProduct BackgroundImage={product.photoUrl} />}
                         </div>
                         <DescriptionContainer>
-                        <Top>
                             <ProductTitle>{product.name}</ProductTitle>
                             {cartContext.carrinho.map( productCart => {
                               if ( product.id === productCart.id ) {
@@ -390,12 +373,10 @@ const doceCategory = restaurant.products && restaurant.products.filter( product 
                                         </ContainerContador>
                               } else {return <></>}
                             })}
-                        </Top>
                             <Ingredients>{product.description}</Ingredients>
-                                <Bottom>
                                   <Price>R${product.price.toFixed(2)}</Price>
-                                  <ButtonAdd onClick={() => goToAddQuantity(product)}>adicionar</ButtonAdd>
-                                </Bottom>
+                                  {cartContext.carrinho.findIndex(productCart => product.id === productCart.id) !== -1 ? <ButtonAdd onClick={() => removeProduct(product.id)}>Remover</ButtonAdd> :
+                                   <ButtonAdd onClick={() => goToAddQuantity(product)}>adicionar</ButtonAdd>}
                         </DescriptionContainer>
                     </ProductContainer>
                   </>
@@ -412,7 +393,6 @@ const doceCategory = restaurant.products && restaurant.products.filter( product 
                           {product.photoUrl && <ImageProduct BackgroundImage={product.photoUrl} />}
                         </div>
                         <DescriptionContainer>
-                        <Top>
                             <ProductTitle>{product.name}</ProductTitle>
                             {cartContext.carrinho.map( productCart => {
                               if ( product.id === productCart.id ) {
@@ -425,12 +405,10 @@ const doceCategory = restaurant.products && restaurant.products.filter( product 
                                         </ContainerContador>
                               } else {return <></>}
                             })}
-                        </Top>
                             <Ingredients>{product.description}</Ingredients>
-                                <Bottom>
                                   <Price>R${product.price.toFixed(2)}</Price>
-                                  <ButtonAdd onClick={() => goToAddQuantity(product)}>adicionar</ButtonAdd>
-                                </Bottom>
+                                  {cartContext.carrinho.findIndex(productCart => product.id === productCart.id) !== -1 ? <ButtonAdd onClick={() => removeProduct(product.id)}>Remover</ButtonAdd> :
+                                   <ButtonAdd onClick={() => goToAddQuantity(product)}>adicionar</ButtonAdd>}
                         </DescriptionContainer>
                     </ProductContainer>
                   </>
@@ -447,7 +425,6 @@ const doceCategory = restaurant.products && restaurant.products.filter( product 
                           {product.photoUrl && <ImageProduct BackgroundImage={product.photoUrl} />}
                         </div>
                         <DescriptionContainer>
-                        <Top>
                             <ProductTitle>{product.name}</ProductTitle>
                             {cartContext.carrinho.map( productCart => {
                               if ( product.id === productCart.id ) {
@@ -460,12 +437,10 @@ const doceCategory = restaurant.products && restaurant.products.filter( product 
                                         </ContainerContador>
                               } else {return <></>}
                             })}
-                        </Top>
                             <Ingredients>{product.description}</Ingredients>
-                                <Bottom>
                                   <Price>R${product.price.toFixed(2)}</Price>
-                                  <ButtonAdd onClick={() => goToAddQuantity(product)}>adicionar</ButtonAdd>
-                                </Bottom>
+                                  {cartContext.carrinho.findIndex(productCart => product.id === productCart.id) !== -1 ? <ButtonAdd onClick={() => removeProduct(product.id)}>Remover</ButtonAdd> :
+                                   <ButtonAdd onClick={() => goToAddQuantity(product)}>adicionar</ButtonAdd>}
                         </DescriptionContainer>
                     </ProductContainer>
                   </>
@@ -482,7 +457,6 @@ const doceCategory = restaurant.products && restaurant.products.filter( product 
                           {product.photoUrl && <ImageProduct BackgroundImage={product.photoUrl} />}
                         </div>
                         <DescriptionContainer>
-                        <Top>
                             <ProductTitle>{product.name}</ProductTitle>
                             {cartContext.carrinho.map( productCart => {
                               if ( product.id === productCart.id ) {
@@ -495,12 +469,10 @@ const doceCategory = restaurant.products && restaurant.products.filter( product 
                                         </ContainerContador>
                               } else {return <></>}
                             })}
-                        </Top>
                             <Ingredients>{product.description}</Ingredients>
-                                <Bottom>
                                   <Price>R${product.price.toFixed(2)}</Price>
-                                  <ButtonAdd onClick={() => goToAddQuantity(product)}>adicionar</ButtonAdd>
-                                </Bottom>
+                                  {cartContext.carrinho.findIndex(productCart => product.id === productCart.id) !== -1 ? <ButtonAdd onClick={() => removeProduct(product.id)}>Remover</ButtonAdd> :
+                                   <ButtonAdd onClick={() => goToAddQuantity(product)}>adicionar</ButtonAdd>}
                         </DescriptionContainer>
                     </ProductContainer>
                   </>
@@ -517,7 +489,6 @@ const doceCategory = restaurant.products && restaurant.products.filter( product 
                           {product.photoUrl && <ImageProduct BackgroundImage={product.photoUrl} />}
                         </div>
                         <DescriptionContainer>
-                        <Top>
                             <ProductTitle>{product.name}</ProductTitle>
                             {cartContext.carrinho.map( productCart => {
                               if ( product.id === productCart.id ) {
@@ -530,12 +501,10 @@ const doceCategory = restaurant.products && restaurant.products.filter( product 
                                         </ContainerContador>
                               } else {return <></>}
                             })}
-                        </Top>
                             <Ingredients>{product.description}</Ingredients>
-                                <Bottom>
                                   <Price>R${product.price.toFixed(2)}</Price>
-                                  <ButtonAdd onClick={() => goToAddQuantity(product)}>adicionar</ButtonAdd>
-                                </Bottom>
+                                  {cartContext.carrinho.findIndex(productCart => product.id === productCart.id) !== -1 ? <ButtonAdd onClick={() => removeProduct(product.id)}>Remover</ButtonAdd> :
+                                   <ButtonAdd onClick={() => goToAddQuantity(product)}>adicionar</ButtonAdd>}
                         </DescriptionContainer>
                     </ProductContainer>
                   </>

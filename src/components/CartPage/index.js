@@ -138,27 +138,26 @@ const CartPage = () => {
                 <div>
                   {cartContext.carrinho && cartContext.carrinho.map(product => {
                     return (
-                        <ProductContainer
-                          key={product.id}
-                        >
-                          <div>
-                            {product.photoUrl && (
-                              <ImageProduct BackgroundImage={product.photoUrl} />
-                              )
-                            }
-                          </div>
-                          <DescriptionContainer>
-                              <Top>
-                                <ProductTitle>{product.name}</ProductTitle>
-                                <ContainerContador>
-                                  <Contador>{product.quantity}</Contador>
-                                </ContainerContador>
-                              </Top>
-                              <Ingredients>{product.description}</Ingredients>
-                                  <Bottom>
-                                    <Price>R${product.price.toFixed(2)}</Price>
-                                    <ButtonRemove onClick={() => removeProduct(product.id)}>Remover</ButtonRemove>
-                                  </Bottom>
+                      <ProductContainer key={product.id}>
+                        <div>
+                          {product.photoUrl && <ImageProduct BackgroundImage={product.photoUrl} />}
+                        </div>
+                        <DescriptionContainer>
+                            <ProductTitle>{product.name}</ProductTitle>
+                            {cartContext.carrinho.map( productCart => {
+                              if ( product.id === productCart.id ) {
+                                return <ContainerContador
+                                          key={productCart.id}
+                                        >
+                                          <Contador>
+                                            {productCart.quantity}
+                                          </Contador>
+                                        </ContainerContador>
+                              } else {return <></>}
+                            })}
+                            <Ingredients>{product.description}</Ingredients>
+                                  <Price>R${product.price.toFixed(2)}</Price>
+                                  <ButtonRemove onClick={() => removeProduct(product.id)}>Remover</ButtonRemove>
                           </DescriptionContainer>
                         </ProductContainer>
                     );

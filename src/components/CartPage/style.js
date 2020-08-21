@@ -2,9 +2,7 @@ import styled from 'styled-components';
 
 export const ProductContainer = styled.div `
     display: flex;
-    flex-direction: row;
     border: 1px solid #b8b8b8;
-    height: 7rem;
     border-radius: 8px;
     margin-top: 0.5rem;
 `
@@ -76,22 +74,25 @@ export const ImageProduct = styled.img `
     background-image: url(${props => props.BackgroundImage});
     background-size: cover;
     background-position: center;
-    height: 7rem;
+    height: 100%;
     width: 6rem;
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
     margin-right: 1rem;
+    flex-shrink: 0;
 `
 
 export const DescriptionContainer = styled.div `
     display: flex;
     flex-direction: column;
+    width: 100%;
+    position: relative;
+    padding: 1rem 0 1rem 1rem;
 `
 
 export const ProductTitle = styled.p `
     color: #e8222e;
     margin: 0.75rem 0 0 0;
-    width: 18.5rem;
     height: 1.125rem;
     font-family: Roboto;
     font-size: 1rem;
@@ -101,17 +102,17 @@ export const ProductTitle = styled.p `
 export const Ingredients = styled.p `
     font-size: 0.75rem;
     color: #b8b8b8;
+    margin-top: 5px;
 `
 
 export const Bottom = styled.div `
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 14.3rem;
 `
 
 export const Price = styled.p `
-    margin: 0;
+    margin-top: 5px;
     width: 7.375rem;
     height: 1.188rem;
     font-family: Roboto;
@@ -137,6 +138,10 @@ export const ButtonRemove = styled.button `
     background-color: white;
     border: solid 1px #e8222e;
     color: #e8222e;
+    flex-shrink: 0;
+    position: absolute;
+    bottom: -1px;
+    right: -1px;
 `
 export const ContainerFooter = styled.div `
     background-color: #fff;
@@ -165,14 +170,19 @@ export const Top = styled.div `
 `
 
 export const ContainerContador = styled.div `
-    width: 2.063rem;
-    height: 1.5rem;
-    border-radius: 0 8px 0 8px ;
+    height: 2.063rem;
+    border-radius: 0 8px 0 8px;
     background-color: white;
     border: solid 1px #e8222e;
-    margin-left: 0.3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: #e8222e;
-    text-align: center;
+    flex-shrink: 0;
+    width: 2.063rem;
+    position: absolute;
+    top: -1px;
+    right: -1px;
 `
 
 export const Contador = styled.p `

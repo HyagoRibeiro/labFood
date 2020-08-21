@@ -13,8 +13,7 @@ export const HeaderTitle = styled.p `
 `
 
 export const RestContainer = styled.div `
-    margin: 1rem;
-    text-align: left;
+    margin: 0 1rem;
 `
 
 export const Image = styled.img `
@@ -68,33 +67,38 @@ export const SectionContainer = styled.div `
 
 export const ProductContainer = styled.div `
     display: flex;
-    flex-direction: row;
     border: 1px solid #b8b8b8;
-    height: 7rem;
     border-radius: 8px;
     margin-top: 0.5rem;
+`
+
+export const Top = styled.div `
+    display: flex;
+    justify-content: space-between;
 `
 
 export const ImageProduct = styled.img `
     background-image: url(${props => props.BackgroundImage});
     background-size: cover;
     background-position: center;
-    height: 7rem;
+    height: 100%;
     width: 6rem;
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
-    margin-right: 1rem;
+    flex-shrink: 0;
 `
 
 export const DescriptionContainer = styled.div `
     display: flex;
     flex-direction: column;
+    width: 100%;
+    position: relative;
+    padding: 1rem 0 1rem 1rem;
 `
 
 export const ProductTitle = styled.p `
     color: #e8222e;
-    margin: 0.75rem 0 0 0;
-    width: 18.5rem;
+    margin: 0;
     height: 1.125rem;
     font-family: Roboto;
     font-size: 1rem;
@@ -110,17 +114,14 @@ export const Bottom = styled.div `
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 14.3rem;
 `
 
 export const Price = styled.p `
     margin: 0;
-    width: 7.375rem;
     height: 1.188rem;
     font-family: Roboto;
     font-size: 1rem;
     letter-spacing: -0.39px;
-    color: var(--black);
 `
 
 export const ButtonAdd = styled.button `
@@ -130,28 +131,30 @@ export const ButtonAdd = styled.button `
     border-radius: 8px 0 8px 0;
     background-color: white;
     border: solid 1px black;
+    flex-shrink: 0;
+    position: absolute;
+    bottom: -1px;
+    right: -1px;
 `
 
 export const Container = styled.div `
     z-index: 1;
 `
 
-export const Top = styled.div `
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 14.3rem;
-`
-
 export const ContainerContador = styled.div `
-    width: 2.063rem;
-    height: 1.5rem;
-    border-radius: 0 8px 0 8px ;
+    height: 2.063rem;
+    border-radius: 0 8px 0 8px;
     background-color: white;
     border: solid 1px #e8222e;
-    margin-left: 0.3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: #e8222e;
-    text-align: center;
+    flex-shrink: 0;
+    width: 2.063rem;
+    position: absolute;
+    top: -1px;
+    right: -1px;
 `
 
 export const Contador = styled.p `
