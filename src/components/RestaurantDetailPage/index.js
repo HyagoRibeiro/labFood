@@ -69,8 +69,12 @@ function RestaurantDetailPage() {
 }
 
   const goToAddQuantity = (allProduct) => {
-    setShowQuantity(!showQuantity)
-    setProduct(allProduct)
+    if(cartContext.carrinho.length === 0 || cartContext.carrinho.length !== 0 && restaurant.id === cartContext.carrinho[0].restauranteId) {
+      setShowQuantity(!showQuantity)
+      setProduct(allProduct)
+  } else {
+      alert("Você só pode adicionar ao seu carrinho, produtos de um mesmo restaurante.")
+    }
   }
 
   const removeProduct = (productId) => {
