@@ -1,4 +1,4 @@
-<h1 align="center"> GoSpace </h1>
+<h1 align="center"> LabFood </h1>
 
 <p align="center"><img src="https://img.shields.io/static/v1?label=react&message=framework&color=blue&style=flat&logo=REACT"/>
 <img src="https://img.shields.io/static/v1?label=styled-components&message=lib&color=pink&style=flat&logo=STYLED-COMPONENTS"/>
@@ -8,25 +8,33 @@
 
 
 ## Descrição do Projeto
-<p align="justify"> A aplicação GoSpace é um dos trabalhos que desenvolvi no curso da escola Labenu. É um site de viagens interplanetárias, no qual o usuário pode olhar viagens vigentes e se candidatar. Além disso, também temos a sessão de administrador, que pode realizar ações exclusivas como exclusão de viagens, criação e aprovação de candidatos. A aplicação possuí suporte responsivo para mobile e foi pensada para ser simples e objetiva.</p>
-<p align="justify">O projeto consiste em comunicação com APIs externas que foram elaboradas pelos professores da escola.</p>
+<p align="justify"> O projeto LabFood foi um dos primeiros trabalhos completos nos módulos de frontend. O trabalho está 100% funcional, mas ainda precisa de ajustes e limpeza de código. Assim como aperfeiçoar a responsividade.</p>
+<p align="justify"> O objetivo foi replicar a plataforma do Ifood, utilizando diversas APIs para realizar a comunicação com o banco de dados, além de hooks como useReducer e useContext para utilizar um estado global na aplicação. A aplicação foi desenvolvida como mobile first e não está completa, então sua visualização no navegador precisa ser realizada simulando um aparelho smartphone.</p>
+<p align="justify">As APIs foram elaboradas pelos professores da escola.</p>
+
+#### Status do Projeto: Em desenvolvimento :warning:
 
 ### O que a aplicação é capaz de fazer :checkered_flag:
 - Como usuário: :ok_woman:
-    - Olhar todas as viagens vigentes 
-    - Candidatar-se para viagens, preenchendo formulário
-    
-- Como administrador: :cop:
-    - Criar novas viagens
-    - Excluir viagens
-    - Aprovar ou recusar candidaturas
+    - Criar conta 
+    - Logar
+    - Cadastrar endereço
+    - Escolher restaurante
+    - Filtrar por nome
+    - Filtrar por categoria
+    - Adicionar produtos ao carrinho
+    - Remover produtos do carrinho
+    - Realizar pedido
+    - Visualizar perfil
+    - Editar o perfil
+    - Editar endereço
     
 ## Deploy da Aplicação com Surge: :dash:
 
-> http://gospace.surge.sh/
-<p>Acesso a área adm</p>
+> http://labfood-hyago.surge.sh/login
+<p>Conta de acesso (Peço que não crie contas na aplicação, pois pode sobrecarregar a API):</p>
 <p>Usuário: hyago@gmail.com</p>
-<p>senha: 123456</p>
+<p>senha: 123</p>
 
 ## Pré-requisitos :warning:
 
@@ -37,6 +45,7 @@
     2. Acesse a pasta na qual foi clonado
     3. `npm install` para instalar todas as dependências
     4. `npm run start` para rodas localmente o projeto
+        -OBS: Abrir no navegador como mobile
     5. `npm run build` para gerar uma versão estática do projeto (que ficará na pasta `build`)
     
 ## Libs utilizadas :books:
@@ -45,6 +54,7 @@
 - Router
 - Styled-Components
 - Axios
+- Material-ui
 
 ## Contato
 - [Linkedin](https://www.linkedin.com/in/hyago-ribeiro/)
