@@ -13,8 +13,7 @@ export const HeaderTitle = styled.p `
 `
 
 export const RestContainer = styled.div `
-    margin: 1rem;
-    text-align: left;
+    margin: 0 1rem;
 `
 
 export const Image = styled.img `
@@ -89,6 +88,7 @@ export const ImageProduct = styled.img `
 export const DescriptionContainer = styled.div `
     display: flex;
     flex-direction: column;
+    width: 100%;
 `
 
 export const ProductTitle = styled.p `
@@ -138,7 +138,6 @@ export const Container = styled.div `
 
 export const Top = styled.div `
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     width: 14.3rem;
 `

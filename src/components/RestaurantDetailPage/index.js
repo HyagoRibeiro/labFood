@@ -145,7 +145,6 @@ const doceCategory = restaurant.products && restaurant.products.filter( product 
 
   return (
     <>
-    <Container>
       {showQuantity && (
         <AddQuantity
         showQuantity={showQuantity}
@@ -155,6 +154,7 @@ const doceCategory = restaurant.products && restaurant.products.filter( product 
         />
         )
       }
+    <Container>
       <Header>
         <p
           onClick={goToRestaurantPage}
